@@ -6,11 +6,11 @@ package semver
 import (
 	"testing"
 
-	"go.xrstf.de/rudi/pkg/coalescing"
-	"go.xrstf.de/rudi/pkg/eval/builtin"
-	"go.xrstf.de/rudi/pkg/testutil"
-
 	blangsemver "github.com/blang/semver/v4"
+
+	"go.xrstf.de/rudi/pkg/builtin"
+	"go.xrstf.de/rudi/pkg/coalescing"
+	"go.xrstf.de/rudi/pkg/testutil"
 )
 
 func TestParseFunction(t *testing.T) {

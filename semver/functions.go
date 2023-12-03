@@ -4,37 +4,25 @@
 package semver
 
 import (
-	"fmt"
-
-	"go.xrstf.de/rudi/pkg/eval"
-	"go.xrstf.de/rudi/pkg/eval/types"
-	"go.xrstf.de/rudi/pkg/lang/ast"
-
 	blangsemver "github.com/blang/semver/v4"
+
+	"go.xrstf.de/rudi"
+	"go.xrstf.de/rudi/pkg/eval/types"
 )
 
 var (
 	Functions = types.Functions{
-		"semver": types.BasicFunction(parseFunction, "parses a string as a semantic version"),
+		"semver": rudi.NewLiteralFunction(parseFunction, "parses a string as a semantic version").MinArgs(1).MaxArgs(1),
 	}
 )
 
-func parseFunction(ctx types.Context, args []ast.Expression) (any, error) {
-	if size := len(args); size != 1 {
-		return nil, fmt.Errorf("expected 1 argument, got %d", size)
-	}
-
-	_, version, err := eval.EvalExpression(ctx, args[0])
+func parseFunction(ctx types.Context, args []any) (any, error) {
+	version, err := ctx.Coalesce().ToString(args[0])
 	if err != nil {
 		return nil, err
 	}
 
-	versionString, err := ctx.Coalesce().ToString(version)
-	if err != nil {
-		return nil, err
-	}
-
-	parsed, err := blangsemver.ParseTolerant(versionString)
+	parsed, err := blangsemver.ParseTolerant(version)
 	if err != nil {
 		return nil, err
 	}

@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"strings"
 
+	blangsemver "github.com/blang/semver/v4"
+
 	"go.xrstf.de/rudi/pkg/coalescing"
 	"go.xrstf.de/rudi/pkg/deepcopy"
 	"go.xrstf.de/rudi/pkg/equality"
 	"go.xrstf.de/rudi/pkg/pathexpr"
-
-	blangsemver "github.com/blang/semver/v4"
 )
 
 type Semver struct {

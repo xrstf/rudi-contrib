@@ -1,6 +1,6 @@
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
-go.xrstf.de/rudi v0.1.0 h1:wBYNu57zXpeeS+WbBN/iShvJ3CvkrijvCXTGgZNUIyo=
-go.xrstf.de/rudi v0.1.0/go.mod h1:ERo0X1RhWc5J8FFlNWx9i0j3ZEvrRD/YXqVvo+q1rfo=
+go.xrstf.de/rudi v0.1.1-0.20231203234653-fb45c79f7482 h1:B7lSNqR4ylslfEpiQG1jtFZGq3iN9HDmwRKPbNBEwi0=
+go.xrstf.de/rudi v0.1.1-0.20231203234653-fb45c79f7482/go.mod h1:ERo0X1RhWc5J8FFlNWx9i0j3ZEvrRD/YXqVvo+q1rfo=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=

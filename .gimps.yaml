@@ -1,0 +1,6 @@
+importOrder: [std, external, rudi, project]
+sets:
+  - name: rudi
+    patterns:
+      - 'go.xrstf.de/rudi'
+      - 'go.xrstf.de/rudi/**'
