@@ -1,0 +1,6 @@
+github.com/blang/semver/v4 v4.0.0 h1:1PFHFE6yCCTv8C1TeyNNarDzntLi7wMI5i/pzqYIsAM=
+github.com/blang/semver/v4 v4.0.0/go.mod h1:IbckMUScFkM3pff0VJDNKRiT6TG/YpiHIM2yvyW5YoQ=
+github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
+github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
+go.xrstf.de/rudi v0.1.0 h1:wBYNu57zXpeeS+WbBN/iShvJ3CvkrijvCXTGgZNUIyo=
+go.xrstf.de/rudi v0.1.0/go.mod h1:ERo0X1RhWc5J8FFlNWx9i0j3ZEvrRD/YXqVvo+q1rfo=
