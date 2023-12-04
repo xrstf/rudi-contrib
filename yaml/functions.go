@@ -7,17 +7,16 @@ import (
 	yamlv3 "gopkg.in/yaml.v3"
 
 	"go.xrstf.de/rudi"
-	"go.xrstf.de/rudi/pkg/eval/types"
 )
 
 var (
-	Functions = types.Functions{
+	Functions = rudi.Functions{
 		"to-yaml":   rudi.NewLiteralFunction(toYamlFunction, "encodes the given value as YAML").MinArgs(1).MaxArgs(1),
 		"from-yaml": rudi.NewLiteralFunction(fromYamlFunction, "decodes a YAML string into a Go value").MinArgs(1).MaxArgs(1),
 	}
 )
 
-func toYamlFunction(ctx types.Context, args []any) (any, error) {
+func toYamlFunction(ctx rudi.Context, args []any) (any, error) {
 	encoded, err := yamlv3.Marshal(args[0])
 	if err != nil {
 		return nil, err
@@ -26,7 +25,7 @@ func toYamlFunction(ctx types.Context, args []any) (any, error) {
 	return string(encoded), nil
 }
 
-func fromYamlFunction(ctx types.Context, args []any) (any, error) {
+func fromYamlFunction(ctx rudi.Context, args []any) (any, error) {
 	data, err := ctx.Coalesce().ToString(args[0])
 	if err != nil {
 		return nil, err
