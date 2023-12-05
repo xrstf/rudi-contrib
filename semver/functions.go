@@ -11,16 +11,11 @@ import (
 
 var (
 	Functions = rudi.Functions{
-		"semver": rudi.NewLiteralFunction(parseFunction, "parses a string as a semantic version").MinArgs(1).MaxArgs(1),
+		"semver": rudi.NewFunctionBuilder(parseFunction).WithDescription("parses a string as a semantic version").Build(),
 	}
 )
 
-func parseFunction(ctx rudi.Context, args []any) (any, error) {
-	version, err := ctx.Coalesce().ToString(args[0])
-	if err != nil {
-		return nil, err
-	}
-
+func parseFunction(version string) (any, error) {
 	parsed, err := blangsemver.ParseTolerant(version)
 	if err != nil {
 		return nil, err

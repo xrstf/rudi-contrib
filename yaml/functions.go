@@ -11,13 +11,13 @@ import (
 
 var (
 	Functions = rudi.Functions{
-		"to-yaml":   rudi.NewLiteralFunction(toYamlFunction, "encodes the given value as YAML").MinArgs(1).MaxArgs(1),
-		"from-yaml": rudi.NewLiteralFunction(fromYamlFunction, "decodes a YAML string into a Go value").MinArgs(1).MaxArgs(1),
+		"to-yaml":   rudi.NewFunctionBuilder(toYamlFunction).WithDescription("encodes the given value as YAML").Build(),
+		"from-yaml": rudi.NewFunctionBuilder(fromYamlFunction).WithDescription("decodes a YAML string into a Go value").Build(),
 	}
 )
 
-func toYamlFunction(ctx rudi.Context, args []any) (any, error) {
-	encoded, err := yamlv3.Marshal(args[0])
+func toYamlFunction(val any) (any, error) {
+	encoded, err := yamlv3.Marshal(val)
 	if err != nil {
 		return nil, err
 	}
@@ -25,14 +25,9 @@ func toYamlFunction(ctx rudi.Context, args []any) (any, error) {
 	return string(encoded), nil
 }
 
-func fromYamlFunction(ctx rudi.Context, args []any) (any, error) {
-	data, err := ctx.Coalesce().ToString(args[0])
-	if err != nil {
-		return nil, err
-	}
-
+func fromYamlFunction(encoded string) (any, error) {
 	var result any
-	if err := yamlv3.Unmarshal([]byte(data), &result); err != nil {
+	if err := yamlv3.Unmarshal([]byte(encoded), &result); err != nil {
 		return nil, err
 	}
 

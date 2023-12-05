@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/blang/semver/v4 v4.0.0
-	go.xrstf.de/rudi v0.1.1-0.20231203234653-fb45c79f7482
+	go.xrstf.de/rudi v0.2.1-0.20231205152938-7272c971e798
 )
 
 require github.com/google/go-cmp v0.6.0 // indirect
