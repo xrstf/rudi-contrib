@@ -11,11 +11,15 @@ define FOREACH_MODULE
 endef
 
 .DEFAULT: all
-all: test spellcheck lint
+all: gimps test spellcheck lint
 
 .PHONY: test
 test:
 	@$(call FOREACH_MODULE, CGO_ENABLED=1 go test $(GO_TEST_FLAGS) ./...)
+
+.PHONY: gimps
+gimps:
+	@$(call FOREACH_MODULE, gimps --config ../.gimps.yaml .)
 
 .PHONY: lint
 lint:
