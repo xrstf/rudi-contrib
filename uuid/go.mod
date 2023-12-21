@@ -4,5 +4,5 @@ go 1.18
 
 require (
 	github.com/google/uuid v1.5.0
-	go.xrstf.de/rudi v0.2.1-0.20231205152938-7272c971e798
+	go.xrstf.de/rudi v0.4.0
 )

@@ -25,6 +25,10 @@ gimps:
 lint:
 	@$(call FOREACH_MODULE, golangci-lint run ./...)
 
+.PHONY: tidy
+tidy:
+	@$(call FOREACH_MODULE, go mod tidy)
+
 .PHONY: spellcheck
 spellcheck:
 	typos
