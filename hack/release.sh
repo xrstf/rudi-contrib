@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: 2023 Christoph Mewes
+# SPDX-License-Identifier: MIT
+
 set -euo pipefail
 
 cd $(dirname $0)/..
 
-if (( $# < 1 )); then
-  echo "Usage: hack/new-patch.sh module[ module module module]"
+if (( $# < 2 )); then
+  echo "Usage: hack/release.sh [major|minor|patch] module[ module module module]"
   exit 2
 fi
+
+kind="$1"
+shift
 
 for module in "$@"; do
   if [ ! -d "$module" ]; then
@@ -36,7 +42,7 @@ for module in "$@"; do
     latest="${latest#v}"
 
     # get next patch release
-    next="$(semver next patch "$latest")"
+    next="$(semver next $kind "$latest")"
 
     echo "Bumping $module module from $latest to $next…"
   fi
