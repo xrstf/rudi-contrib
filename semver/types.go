@@ -12,7 +12,7 @@ import (
 	"go.xrstf.de/rudi/pkg/coalescing"
 	"go.xrstf.de/rudi/pkg/deepcopy"
 	"go.xrstf.de/rudi/pkg/equality"
-	"go.xrstf.de/rudi/pkg/pathexpr"
+	"go.xrstf.de/rudi/pkg/jsonpath"
 )
 
 type Semver struct {
@@ -20,14 +20,14 @@ type Semver struct {
 }
 
 var (
-	_ pathexpr.ObjectReader            = Semver{}
-	_ pathexpr.ObjectWriter            = Semver{}
+	_ jsonpath.ObjectReader            = Semver{}
+	_ jsonpath.ObjectWriter            = Semver{}
 	_ deepcopy.Copier                  = Semver{}
 	_ coalescing.CustomStringCoalescer = Semver{}
 	_ equality.Comparer                = Semver{}
 )
 
-// GetObjectKey implements pathexpr.ObjectWriter.
+// GetObjectKey implements jsonpath.ObjectWriter.
 func (v Semver) GetObjectKey(name string) (any, error) {
 	switch strings.ToLower(name) {
 	case "major":
@@ -56,7 +56,7 @@ func toInteger(val any) (int64, bool) {
 	}
 }
 
-// SetObjectKey implements pathexpr.ObjectWriter.
+// SetObjectKey implements jsonpath.ObjectWriter.
 func (v Semver) SetObjectKey(name string, value any) (any, error) {
 	switch strings.ToLower(name) {
 	case "major":

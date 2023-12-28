@@ -118,7 +118,7 @@ func TestParseFunction(t *testing.T) {
 		},
 	}
 
-	funcs := builtin.Functions.DeepCopy().Add(Functions)
+	funcs := builtin.SafeFunctions.DeepCopy().Add(Functions)
 
 	for _, testcase := range testcases {
 		testcase.Functions = funcs

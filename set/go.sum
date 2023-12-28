@@ -1,6 +1,6 @@
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
-go.xrstf.de/rudi v0.4.0 h1:iv3D+lEoa5TEr9TJ8VdzgL02dto9Tk+a9XWdOJsyjRk=
-go.xrstf.de/rudi v0.4.0/go.mod h1:ERo0X1RhWc5J8FFlNWx9i0j3ZEvrRD/YXqVvo+q1rfo=
+go.xrstf.de/rudi v0.5.1 h1:QdBQ9/oyIoCObeuWJupDwpZ6iufIjOYeIeixU56N+nY=
+go.xrstf.de/rudi v0.5.1/go.mod h1:ERo0X1RhWc5J8FFlNWx9i0j3ZEvrRD/YXqVvo+q1rfo=
 k8s.io/apimachinery v0.29.0 h1:+ACVktwyicPz0oc6MTMLwa2Pw3ouLAfAon1wPLtG48o=
 k8s.io/apimachinery v0.29.0/go.mod h1:eVBxQ/cwiJxH58eK/jd/vAk4mrxmVlnpBH5J2GbMeis=
