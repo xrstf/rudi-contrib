@@ -22,6 +22,7 @@ var (
 		"set-diff":         rudi.NewFunctionBuilder(setDifferenceFunction).WithDescription("returns the difference between two sets").Build(),
 		"set-insert":       rudi.NewFunctionBuilder(setInsertFunction).WithDescription("returns a copy of the set with the newly added values inserted to it").Build(),
 		"set-intersection": rudi.NewFunctionBuilder(setIntersectionFunction).WithDescription("returns the insersection of two sets").Build(),
+		"set-list":         rudi.NewFunctionBuilder(setListFunction).WithDescription("returns a sorted vector containing the values of the set").Build(),
 		"set-size":         rudi.NewFunctionBuilder(setLenFunction).WithDescription("returns the number of values in the set").Build(),
 		"set-symdiff":      rudi.NewFunctionBuilder(setSymmetricDifferenceFunction).WithDescription("returns the symmetric difference between two sets").Build(),
 		"set-union":        rudi.NewFunctionBuilder(setUnionFunction).WithDescription("returns the union of two or more sets").Build(),
@@ -72,7 +73,7 @@ func setDeleteFunction(ctx types.Context, target any, itemsToRemove ...any) (any
 	return s.Clone().Delete(strs...), nil
 }
 
-func setLenFunction(ctx types.Context, target any) (any, error) {
+func setLenFunction(target any) (any, error) {
 	s, ok := target.(sets.Set[string])
 	if !ok {
 		return nil, fmt.Errorf("argument #0: not a set, but %T", target)
@@ -109,6 +110,21 @@ func setHasAnyFunction(ctx types.Context, target any, items ...any) (any, error)
 	return s.HasAny(strs...), nil
 }
 
+func setListFunction(ctx types.Context, target any) (any, error) {
+	s, ok := target.(sets.Set[string])
+	if !ok {
+		return nil, fmt.Errorf("argument #0: not a set, but %T", target)
+	}
+
+	strs := sets.List(s)
+	result := make([]any, len(strs))
+	for i, str := range strs {
+		result[i] = str
+	}
+
+	return result, nil
+}
+
 type setsFunc func(a, b sets.Set[string]) (any, error)
 
 func callFuncOnSets(a any, b any, f setsFunc) (any, error) {
@@ -131,31 +147,31 @@ func setEqualFunction(target any, other any) (any, error) {
 	})
 }
 
-func setIntersectionFunction(ctx types.Context, target any, other any) (any, error) {
+func setIntersectionFunction(target any, other any) (any, error) {
 	return callFuncOnSets(target, other, func(a, b sets.Set[string]) (any, error) {
 		return a.Intersection(b), nil
 	})
 }
 
-func setDifferenceFunction(ctx types.Context, target any, other any) (any, error) {
+func setDifferenceFunction(target any, other any) (any, error) {
 	return callFuncOnSets(target, other, func(a, b sets.Set[string]) (any, error) {
 		return a.Difference(b), nil
 	})
 }
 
-func setSymmetricDifferenceFunction(ctx types.Context, target any, other any) (any, error) {
+func setSymmetricDifferenceFunction(target any, other any) (any, error) {
 	return callFuncOnSets(target, other, func(a, b sets.Set[string]) (any, error) {
 		return a.SymmetricDifference(b), nil
 	})
 }
 
-func setIsSupersetFunction(ctx types.Context, target any, other any) (any, error) {
+func setIsSupersetFunction(target any, other any) (any, error) {
 	return callFuncOnSets(target, other, func(a, b sets.Set[string]) (any, error) {
 		return a.IsSuperset(b), nil
 	})
 }
 
-func setUnionFunction(ctx types.Context, target any, others ...any) (any, error) {
+func setUnionFunction(target any, others ...any) (any, error) {
 	acc, ok := target.(sets.Set[string])
 	if !ok {
 		return nil, fmt.Errorf("argument #0: not a set, but %T", target)

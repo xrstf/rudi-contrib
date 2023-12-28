@@ -294,6 +294,26 @@ func TestSetHasAnyFunction(t *testing.T) {
 	}
 }
 
+func TestSetListFunction(t *testing.T) {
+	testcases := []testutil.Testcase{
+		{
+			Expression: `(set-list "nope")`,
+			Invalid:    true,
+		},
+		{
+			Expression: `(set-list (new-set "b" "a"))`,
+			Expected:   []any{"a", "b"},
+		},
+	}
+
+	funcs := builtin.SafeFunctions.DeepCopy().Add(Functions)
+
+	for _, testcase := range testcases {
+		testcase.Functions = funcs
+		t.Run(testcase.String(), testcase.Run)
+	}
+}
+
 func TestSetUnionFunction(t *testing.T) {
 	testcases := []testutil.Testcase{
 		{
