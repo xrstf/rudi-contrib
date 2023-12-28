@@ -20,18 +20,26 @@ for module in "$@"; do
   # remove trailing slashes
   module="${module%/}"
 
-  # list all tags for this module,
-  # turn "module/vA.B.C" into "vA.B.C",
-  # then sort version,
-  # then take the last one, the most recent.
-  latest="$(git tag --list "$module/*" | xargs -n 1 basename | sort --version-sort | tail -n 1)"
+  next=""
 
-  # trim leading v
-  latest="${latest#v}"
+  if [ -z "$(git tag --list "$module/*")" ]; then
+    echo "Creating initial tag in $module module…"
+    next="0.0.1"
+  else
+    # list all tags for this module,
+    # turn "module/vA.B.C" into "vA.B.C",
+    # then sort version,
+    # then take the last one, the most recent.
+    latest="$(git tag --list "$module/*" | xargs -n 1 basename | sort --version-sort | tail -n 1)"
 
-  # get next patch release
-  next="$(semver next patch "$latest")"
+    # trim leading v
+    latest="${latest#v}"
 
-  echo "Bumping $module module from $latest to $next…"
+    # get next patch release
+    next="$(semver next patch "$latest")"
+
+    echo "Bumping $module module from $latest to $next…"
+  fi
+
   git tag --message "$module version $next" "$module/v$next"
 done
