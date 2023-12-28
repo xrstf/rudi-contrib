@@ -24,7 +24,7 @@ var (
 		"set-intersection": rudi.NewFunctionBuilder(setIntersectionFunction).WithDescription("returns the insersection of two sets").Build(),
 		"set-size":         rudi.NewFunctionBuilder(setLenFunction).WithDescription("returns the number of values in the set").Build(),
 		"set-symdiff":      rudi.NewFunctionBuilder(setSymmetricDifferenceFunction).WithDescription("returns the symmetric difference between two sets").Build(),
-		"set-union":        rudi.NewFunctionBuilder(setUnionFunction).WithDescription("returns the union of two sets").Build(),
+		"set-union":        rudi.NewFunctionBuilder(setUnionFunction).WithDescription("returns the union of two or more sets").Build(),
 
 		"set-eq?":          rudi.NewFunctionBuilder(setEqualFunction).WithDescription("returns true if two sets hold the same values").Build(),
 		"set-has?":         rudi.NewFunctionBuilder(setHasFunction).WithDescription("returns true if the set contains _all_ of the given values").Build(),
